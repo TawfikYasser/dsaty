@@ -1,5 +1,5 @@
+//Tawfik Yasser
 #include <iostream>
-
 using namespace std;
 class Node
 {
@@ -40,19 +40,24 @@ public:
         }
     }
 
-    void insertAtEnd(int value){
-        if(head == NULL){ // Empty LL
+    void insertAtEnd(int value)
+    {
+        if(head == NULL)  // Empty LL
+        {
             head = new Node();
             Node *newNode = new Node();
             newNode->data = value;
             newNode->next = NULL;
             head = newNode;
-        }else{
+        }
+        else
+        {
             Node *temp = new Node();
             Node *newNode = new Node();
             newNode->data = value;
             temp = head;
-            while(temp->next != NULL){
+            while(temp->next != NULL)
+            {
                 temp = temp->next;
             }
             temp->next = newNode;
@@ -60,9 +65,11 @@ public:
         }
     }
 
-    void insertAfterPosition(int value,int position){
+    void insertAfterPosition(int value,int position)
+    {
 
-        if(head == NULL){//Empty LL
+        if(head == NULL) //Empty LL
+        {
 
             head = new Node();
             Node *newNode = new Node();
@@ -70,17 +77,23 @@ public:
             newNode->next = NULL;
             head = newNode;
 
-        }else{
+        }
+        else
+        {
             calcSize();
-            if(position>_length){
+            if(position>_length)
+            {
                 cout<<"Out of bounds!"<<endl;
-            }else{
+            }
+            else
+            {
                 int i = 1;
                 Node *temp = new Node();
                 Node *newNode = new Node();
                 newNode->data = value;
                 temp = head;
-                while(i<position){
+                while(i<position)
+                {
                     temp = temp->next;
                     i++;
                 }
@@ -90,24 +103,32 @@ public:
         }
     }
 
-    void insertBeforePosition(int value, int position){
-        if(head == NULL){ // Empty ll
+    void insertBeforePosition(int value, int position)
+    {
+        if(head == NULL)  // Empty ll
+        {
             head = new Node();
             Node *newNode = new Node();
             newNode->data = value;
             newNode->next = NULL;
             head = newNode;
-        }else{
+        }
+        else
+        {
             calcSize();
-            if(position>_length){
+            if(position>_length)
+            {
                 cout<<"Out of bounds!"<<endl;
-            }else{
+            }
+            else
+            {
                 int i = 1;
                 Node *temp = new Node();
                 Node *newNode = new Node();
                 newNode->data = value;
                 temp = head;
-                while(i < position - 1){
+                while(i < position - 1)
+                {
                     temp = temp->next;
                     i++;
                 }
@@ -117,10 +138,14 @@ public:
         }
     }
 
-    void deleteFromBeginning(){
-        if(head == NULL){
+    void deleteFromBeginning()
+    {
+        if(head == NULL)
+        {
             cout<<"Empty list";
-        }else{
+        }
+        else
+        {
             Node *temp = new Node();
             temp = head;
             head = temp->next;
@@ -128,22 +153,30 @@ public:
         }
     }
 
-    void deleteFromEnd(){
+    void deleteFromEnd()
+    {
 
-        if(head == NULL){
+        if(head == NULL)
+        {
             cout<<"Empty list";
-        }else{
+        }
+        else
+        {
             Node *temp = new Node();
             temp = head;
             Node *previous = new Node();
             previous = head;
-            while(temp->next != NULL){
+            while(temp->next != NULL)
+            {
                 previous = temp;
                 temp = temp->next;
             }
-            if(temp==head){//One node in the list
+            if(temp==head) //One node in the list
+            {
                 head = NULL;
-            }else{
+            }
+            else
+            {
                 previous->next = NULL;
             }
             delete temp;
@@ -151,15 +184,20 @@ public:
 
     }
 
-    void deleteAtPosition(int position){
-        if(head == NULL){
+    void deleteAtPosition(int position)
+    {
+        if(head == NULL)
+        {
             cout<<"Empty list";
-        }else{
+        }
+        else
+        {
             Node *temp = new Node();
             Node *next = new Node();
             temp = head;
             int i = 1;
-            while(i < position -1){
+            while(i < position -1)
+            {
                 temp = temp->next;
                 i++;
             }
@@ -171,25 +209,40 @@ public:
 
     void printLL()
     {
-        Node *temp = NULL;
-        temp = head;
-        while(temp!= NULL)
+        if(head == NULL)
         {
-            cout<<"[ "<<temp->data<<" ] ";
-            temp = temp->next;
+            cout<<"Empty list";
+        }
+        else
+        {
+            Node *temp = NULL;
+            temp = head;
+            while(temp!= NULL)
+            {
+                cout<<"[ "<<temp->data<<" ] ";
+                temp = temp->next;
+            }
         }
     }
 
-    void calcSize(){
-        int _count;
-        Node *temp = NULL;
-        temp = head;
-        while(temp!= NULL)
+    void calcSize()
+    {
+        if(head == NULL)
         {
-            temp = temp->next;
-            _count++;
+            _length = 0;
         }
-        _length = _count;
+        else
+        {
+            int _count;
+            Node *temp = NULL;
+            temp = head;
+            while(temp!= NULL)
+            {
+                temp = temp->next;
+                _count++;
+            }
+            _length = _count;
+        }
     }
 
     int _size()
