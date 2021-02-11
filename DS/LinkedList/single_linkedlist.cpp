@@ -1,4 +1,3 @@
-//Tawfik Yasser
 #include <iostream>
 
 using namespace std;
@@ -118,13 +117,65 @@ public:
         }
     }
 
+    void deleteFromBeginning(){
+        if(head == NULL){
+            cout<<"Empty list";
+        }else{
+            Node *temp = new Node();
+            temp = head;
+            head = temp->next;
+            delete temp;
+        }
+    }
+
+    void deleteFromEnd(){
+
+        if(head == NULL){
+            cout<<"Empty list";
+        }else{
+            Node *temp = new Node();
+            temp = head;
+            Node *previous = new Node();
+            previous = head;
+            while(temp->next != NULL){
+                previous = temp;
+                temp = temp->next;
+            }
+            if(temp==head){//One node in the list
+                head = NULL;
+            }else{
+                previous->next = NULL;
+            }
+            delete temp;
+        }
+
+    }
+
+    void deleteAtPosition(int position){
+        if(head == NULL){
+            cout<<"Empty list";
+        }else{
+            Node *temp = new Node();
+            Node *next = new Node();
+            temp = head;
+            int i = 1;
+            while(i < position -1){
+                temp = temp->next;
+                i++;
+            }
+            next = temp->next;
+            temp->next = next->next;
+            delete next;
+        }
+    }
+
     void printLL()
     {
         Node *temp = NULL;
         temp = head;
         while(temp!= NULL)
         {
-            cout<<temp->data<<" ";
+            cout<<"[ "<<temp->data<<" ] ";
             temp = temp->next;
         }
     }
@@ -141,7 +192,11 @@ public:
         _length = _count;
     }
 
-    int _size(){calcSize(); return _length;}
+    int _size()
+    {
+        calcSize();
+        return _length;
+    }
 };
 int main()
 {
@@ -155,7 +210,14 @@ int main()
     ll.insertAtEnd(25);
     ll.insertAfterPosition(15,3);
     ll.insertBeforePosition(11,4);
+    ll.deleteFromBeginning();
+    ll.deleteFromEnd();
+    ll.deleteAtPosition(3);
 
+    cout<<"Linked List Items: ";
     ll.printLL();
+
+    cout<<endl;
+    cout<<"Linked List Size = "<<ll._size()<<endl;
     return 0;
 }
