@@ -1,5 +1,7 @@
-//Tawfik Yasser
+// Singly Linked List
+// Tawfik Yasser
 #include <iostream>
+
 using namespace std;
 class Node
 {
@@ -207,6 +209,25 @@ public:
         }
     }
 
+    void reverse(){
+        if(head==NULL){
+            cout<<"Empty List";
+        }else{
+            Node *current = new Node();
+            Node *prev = new Node();
+            Node *next = new Node();
+            prev = NULL;
+            current = next = head;
+            while(next != NULL){
+                next = next->next;
+                current->next = prev;
+                prev = current;
+                current = next;
+            }
+            head = prev;
+        }
+    }
+
     void printLL()
     {
         if(head == NULL)
@@ -266,10 +287,14 @@ int main()
     ll.deleteFromBeginning();
     ll.deleteFromEnd();
     ll.deleteAtPosition(3);
-
+    ll.insertAtEnd(34);
     cout<<"Linked List Items: ";
     ll.printLL();
-
+    
+    ll.reverse();
+    cout<<"\nAfter reverse:"<<endl;
+    cout<<"Linked List Items: ";
+    ll.printLL();
     cout<<endl;
     cout<<"Linked List Size = "<<ll._size()<<endl;
     return 0;
