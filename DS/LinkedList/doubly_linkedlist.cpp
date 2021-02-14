@@ -13,11 +13,13 @@ class DLL{
 
 private:
     Node *head;
+    Node *tail;
     int _length;
 public:
-    DLL(){head = NULL;}
+    DLL(){head = NULL; tail = NULL;}
     void dummyDLL(){
         Node *temp = new Node();
+        Node *tail = new Node();
         int con = 1;
         while(con == 1){
             Node *newNode = new Node();
@@ -28,11 +30,11 @@ public:
             newNode->next = NULL;
             newNode->prev = NULL;
             if(head == NULL){
-                head = temp = newNode;
+                head = tail = newNode;
             }else{
-                temp->next = newNode;
-                newNode->prev = temp;
-                temp = newNode;
+                tail->next = newNode;
+                newNode->prev = tail;
+                tail = newNode;
             }
             cout<<"Do your want to continue (1/0) ? "<<endl;
             cin>>con;
@@ -43,10 +45,167 @@ public:
             temp = temp->next;
         }
     }
+
+    void insertAtBeginning(int value){
+        if(head == NULL){ //Empty
+            head = new Node();
+            tail = new Node();
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            head = newNode;
+            tail = newNode;
+        }else{
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            head->prev = newNode;
+            newNode->next = head;
+            head = newNode;
+        }
+    }
+
+    void insertAtEnd(int value){
+        if(head == NULL){//Empty
+            head = new Node();
+            tail = new Node();
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            head = newNode;
+            tail = newNode;
+        }else{
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            tail->next = newNode;
+            newNode->prev = tail;
+            tail = newNode;
+        }
+    }
+
+    void insertAtPosition(int position, int value){
+        if(head == NULL){//Empty
+            head = new Node();
+            tail = new Node();
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            head = newNode;
+            tail = newNode;
+        }else if(position == 1){
+            insertAtBeginning(value);
+        }else{
+            Node *newNode= new Node();
+            Node *temp = new Node();
+            temp = head;
+            int i = 1 ;
+            while(i < position-1){
+                temp = temp->next;
+                i++;
+            }
+            newNode->data = value;
+            newNode->prev = temp;
+            newNode->next = temp->next;
+            temp->next = newNode;
+            newNode->next->prev = newNode;
+        }
+    }
+
+    void insertAfterPosition(int position, int value){
+        if(head == NULL){//Empty
+            head = new Node();
+            tail = new Node();
+            Node *newNode = new Node();
+            newNode->data = value;
+            newNode->next = NULL;
+            newNode->prev = NULL;
+            head = newNode;
+            tail = newNode;
+        }else if(position == 1){
+            insertAtBeginning(value);
+        }else{
+            Node *newNode= new Node();
+            Node *temp = new Node();
+            temp = head;
+            int i = 1 ;
+            while(i < position){
+                temp = temp->next;
+                i++;
+            }
+            newNode->data = value;
+            newNode->prev = temp;
+            newNode->next = temp->next;
+            temp->next = newNode;
+            newNode->next->prev = newNode;
+        }
+    }
+
+    void printLL()
+    {
+        if(head == NULL)
+        {
+            cout<<"Empty list";
+        }
+        else
+        {
+            Node *temp = NULL;
+            temp = head;
+            while(temp!= NULL)
+            {
+                cout<<"[ "<<temp->data<<" ] ";
+                temp = temp->next;
+            }
+        }
+    }
+
+    void calcSize()
+    {
+        if(head == NULL)
+        {
+            _length = 0;
+        }
+        else
+        {
+            int _count;
+            Node *temp = NULL;
+            temp = head;
+            while(temp!= NULL)
+            {
+                temp = temp->next;
+                _count++;
+            }
+            _length = _count;
+        }
+    }
+
+    int _size()
+    {
+        calcSize();
+        return _length;
+    }
+
 };
 int main()
 {
     DLL dll ;
-    dll.dummyDLL();
+    dll.insertAtBeginning(5);
+    dll.insertAtBeginning(3);
+    dll.insertAtBeginning(9);
+    dll.insertAtEnd(10);
+    dll.insertAtEnd(20);
+    dll.insertAtBeginning(1);
+    dll.insertAtEnd(25);
+    dll.insertAtPosition(3,7);
+    dll.insertAfterPosition(7,8);
+    cout<<"Linked List Items: ";
+    dll.printLL();
+    cout<<endl;
+    cout<<"Linked List Size = "<<dll._size()<<endl;
     return 0;
 }
