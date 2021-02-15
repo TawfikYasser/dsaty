@@ -146,6 +146,52 @@ public:
         }
     }
 
+    void deleteFromBeginning(){
+
+        if(head == NULL){
+            cout<<"Empty List";
+        }else{
+            Node *temp = new Node();
+            temp = head;
+            head = temp->next;
+            head->prev = NULL;
+            delete temp;
+        }
+    }
+
+    void deleteFromEnd(){
+        if(head == NULL){
+            cout<<"Empty List";
+        }else{
+            Node *temp = new Node();
+            temp = tail;
+            tail->prev->next = NULL;
+            tail = tail->prev;
+            delete temp;
+        }
+    }
+
+    void deleteFromPosition(int position){
+        if(head == NULL){
+            cout<<"Empty List";
+        }else if(position == 1){
+            deleteFromBeginning();
+        }else if(position == _size()){
+            deleteFromEnd();
+        }else{
+            Node *temp = new Node();
+            int i = 1;
+            temp = head;
+            while( i < position ){
+                temp = temp->next;
+                i++;
+            }
+            temp->prev->next = temp->next;
+            temp->next->prev = temp->prev;
+            delete temp;
+        }
+    }
+
     void printLL()
     {
         if(head == NULL)
@@ -203,6 +249,17 @@ int main()
     dll.insertAtEnd(25);
     dll.insertAtPosition(3,7);
     dll.insertAfterPosition(7,8);
+    cout<<"Linked List Items: ";
+    dll.printLL();
+    cout<<endl;
+    cout<<"Linked List Size = "<<dll._size()<<endl;
+    dll.deleteFromBeginning();
+    dll.deleteFromEnd();
+    cout<<"Linked List Items: ";
+    dll.printLL();
+    cout<<endl;
+    cout<<"Linked List Size = "<<dll._size()<<endl;
+    dll.deleteFromPosition(4);
     cout<<"Linked List Items: ";
     dll.printLL();
     cout<<endl;
