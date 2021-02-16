@@ -192,6 +192,25 @@ public:
         }
     }
 
+    void reverse(){
+        if(head == NULL){
+            cout<<"Empty list";
+        }else{
+            Node *currentNode = new Node();
+            Node *nextNode = new Node();
+            currentNode = head;
+            while(currentNode != NULL){
+                nextNode = currentNode->next;
+                currentNode->next = currentNode->prev;
+                currentNode->prev = nextNode;
+                currentNode = nextNode;
+            }
+            currentNode = head;
+            head = tail;
+            tail = currentNode;
+        }
+    }
+
     void printLL()
     {
         if(head == NULL)
@@ -260,6 +279,11 @@ int main()
     cout<<endl;
     cout<<"Linked List Size = "<<dll._size()<<endl;
     dll.deleteFromPosition(4);
+    cout<<"Linked List Items: ";
+    dll.printLL();
+    cout<<endl;
+    cout<<"Linked List Size = "<<dll._size()<<endl;
+    dll.reverse();
     cout<<"Linked List Items: ";
     dll.printLL();
     cout<<endl;
