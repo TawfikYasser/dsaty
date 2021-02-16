@@ -149,7 +149,7 @@ public:
     void deleteFromBeginning(){
 
         if(head == NULL){
-            cout<<"Empty List";
+            cout<<"Empty List"<<endl;
         }else{
             Node *temp = new Node();
             temp = head;
@@ -161,7 +161,7 @@ public:
 
     void deleteFromEnd(){
         if(head == NULL){
-            cout<<"Empty List";
+            cout<<"Empty List"<<endl;
         }else{
             Node *temp = new Node();
             temp = tail;
@@ -173,7 +173,7 @@ public:
 
     void deleteFromPosition(int position){
         if(head == NULL){
-            cout<<"Empty List";
+            cout<<"Empty List"<<endl;
         }else if(position == 1){
             deleteFromBeginning();
         }else if(position == _size()){
@@ -194,7 +194,7 @@ public:
 
     void reverse(){
         if(head == NULL){
-            cout<<"Empty list";
+            cout<<"Empty list"<<endl;
         }else{
             Node *currentNode = new Node();
             Node *nextNode = new Node();
@@ -215,7 +215,7 @@ public:
     {
         if(head == NULL)
         {
-            cout<<"Empty list";
+            cout<<"Empty list"<<endl;
         }
         else
         {
