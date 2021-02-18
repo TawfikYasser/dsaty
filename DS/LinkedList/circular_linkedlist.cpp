@@ -155,16 +155,12 @@ int main()
     /*
     //1. create cll with tail only
     cll.createWithTail();
-    cout<<endl;
-    cout<<"Linked List Size = "<<cll._size()<<endl;
     //2. create cll with head only
     cll.dummyCLL();
-    cout<<endl;
-    cout<<"Linked List Size = "<<cll._size()<<endl;
     //2. create cll with head and tail pointers
     cll.createWithHeadAndTail();
+    */
     cout<<endl;
     cout<<"Linked List Size = "<<cll._size()<<endl;
-    */
     return 0;
 }
