@@ -101,6 +101,72 @@ public:
         cout<<"[ "<<temp->data<<" ] ";
     }
 
+    void insertAtBeginning(int value){ //using tail only
+        Node *newNode = new Node();
+        newNode->data = value;
+        if(tail == NULL){
+            tail = newNode;
+            newNode->next = newNode;
+        }else{
+            newNode->next = tail->next;
+            tail->next = newNode;
+        }
+    }
+
+    void insertAtEnd(int value){
+        Node *newNode = new Node();
+        newNode->data = value;
+        if(tail == NULL){
+            tail = newNode;
+            newNode->next = newNode;
+        }else{
+            newNode->next = tail->next;
+            tail->next = newNode;
+            tail = newNode;
+        }
+    }
+
+    void insertAtPosition(int value, int position){
+        Node *newNode = new Node();
+        newNode->data = value;
+        if(position == 1){
+            insertAtBeginning(value);
+        }else if(position == _sizeTail()){
+            insertAtEnd(value);
+        }else if(position < 0 || position > _sizeTail()){
+            cout<<"Invalid position"<<endl;
+        }else{
+            Node *temp = new Node();
+            temp = tail->next;
+            int i = 1;
+            while(i < position-1){
+                temp = temp->next;
+                i++;
+            }
+            newNode->next = temp->next;
+            temp->next = newNode;
+        }
+    }
+
+    void printLLTail(){
+
+        if(tail == NULL)
+        {
+            cout<<"Empty list"<<endl;
+        }
+        else
+        {
+            Node *temp = new Node();
+            temp = tail->next;
+            while(temp->next != tail->next)
+            {
+                cout<<"[ "<<temp->data<<" ] ";
+                temp = temp->next;
+            }
+            cout<<"[ "<<temp->data<<" ] ";
+        }
+
+    }
     void printLL()
     {
         if(head == NULL)
@@ -117,6 +183,26 @@ public:
                 temp = temp->next;
             }
             cout<<"[ "<<temp->data<<" ] ";
+        }
+    }
+
+    void calcSizeTail(){
+        if(tail == NULL)
+        {
+            _length = 0;
+        }
+        else
+        {
+            int _count;
+            Node *temp = NULL;
+            temp = tail->next;
+            while(temp->next != tail->next)
+            {
+                temp = temp->next;
+                _count++;
+            }
+            _count++;
+            _length = _count;
         }
     }
 
@@ -146,6 +232,10 @@ public:
         calcSize();
         return _length;
     }
+    int _sizeTail(){
+        calcSizeTail();
+        return _length;
+    }
 };
 int main()
 {
@@ -160,7 +250,19 @@ int main()
     //2. create cll with head and tail pointers
     cll.createWithHeadAndTail();
     */
+
+    //The insert at beg uses only tail pointer and printTail and calcTail and sizeTail
+    cll.insertAtBeginning(5);
+    cll.insertAtBeginning(8);
+    cll.insertAtBeginning(3);
+    cll.insertAtEnd(10);
+    cout<<"Linked List Items: ";
+    cll.printLLTail();
     cout<<endl;
-    cout<<"Linked List Size = "<<cll._size()<<endl;
+    cll.insertAtPosition(2,3);
+    cout<<"Linked List Items: ";
+    cll.printLLTail();
+    cout<<endl;
+    cout<<"Linked List Size = "<<cll._sizeTail()<<endl;
     return 0;
 }
