@@ -148,6 +148,67 @@ public:
         }
     }
 
+    void deleteFromBeginning(){
+        Node *temp = new Node();
+        if(tail == NULL){
+            cout<<"Empty List"<<endl;
+        }else if(tail == tail->next){
+            tail = NULL;
+            delete temp;
+        }else{
+            temp = tail->next;
+            tail->next = temp->next;
+            delete temp;
+        }
+    }
+
+    void deleteFromEnd(){
+        Node *current = new Node();
+        Node *previous = new Node();
+        current = tail->next;
+        if(tail == NULL){
+            cout<<"Empty List"<<endl;
+        }else if(current == current->next){
+            tail = NULL;
+            delete current;
+        }else{
+            while(current->next != tail->next){
+                previous = current;
+                current = current->next;
+            }
+            previous->next = tail->next;
+            tail = previous;
+            delete current;
+        }
+    }
+
+    void deleteFromPosition(int position){
+        Node *current = new Node();
+        Node *nextNode = new Node();
+        current = tail->next;
+        if(tail == NULL){
+            cout<<"Empty List"<<endl;
+        }else if(current == current->next){
+            tail = NULL;
+            delete current;
+        }else{
+            if(position == 1){
+                deleteFromBeginning();
+            }else if(position == _sizeTail()){
+                deleteFromEnd();
+            }else{
+                int i = 1;
+                while(i<position-1){
+                    current = current->next;
+                    i++;
+                }
+                nextNode = current->next;
+                current->next = nextNode->next;
+                delete nextNode;
+            }
+        }
+    }
+
     void printLLTail(){
 
         if(tail == NULL)
@@ -260,6 +321,18 @@ int main()
     cll.printLLTail();
     cout<<endl;
     cll.insertAtPosition(2,3);
+    cout<<"Linked List Items: ";
+    cll.printLLTail();
+    cout<<endl;
+    cll.deleteFromBeginning();
+    cout<<"Linked List Items: ";
+    cll.printLLTail();
+    cout<<endl;
+    cll.deleteFromEnd();
+    cout<<"Linked List Items: ";
+    cll.printLLTail();
+    cout<<endl;
+    cll.deleteFromPosition(2);
     cout<<"Linked List Items: ";
     cll.printLLTail();
     cout<<endl;
