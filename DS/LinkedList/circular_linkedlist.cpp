@@ -16,7 +16,7 @@ private:
     int _length;
 public:
     CLL(){head = NULL; tail=NULL;}
-    void dummyCLL(){
+    void dummyCLL(){ // uses head only
         Node *temp = new Node();
         int con = 1;
         while(con == 1){
