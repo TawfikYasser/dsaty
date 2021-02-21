@@ -209,6 +209,26 @@ public:
         }
     }
 
+    void reverse(){
+        if(tail == NULL){
+            cout<<"Empty List"<<endl;
+        }else{
+            Node *current = new Node();
+            Node *prev = new Node();
+            Node *next = new Node();
+            current = tail->next;
+            next = current->next;
+            while(current != tail){
+                prev = current;
+                current = next;
+                next = current->next;
+                current->next = prev;
+            }
+            next->next = tail;
+            tail = next;
+        }
+    }
+
     void printLLTail(){
 
         if(tail == NULL)
@@ -333,6 +353,10 @@ int main()
     cll.printLLTail();
     cout<<endl;
     cll.deleteFromPosition(2);
+    cout<<"Linked List Items: ";
+    cll.printLLTail();
+    cout<<endl;
+    cll.reverse();
     cout<<"Linked List Items: ";
     cll.printLLTail();
     cout<<endl;
