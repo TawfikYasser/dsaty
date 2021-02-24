@@ -117,6 +117,61 @@ public:
         }
     }
 
+    void deleteFromBeginning(){
+        Node *temp = new Node();
+        temp = head;
+        if(head == NULL){
+            cout<<"Empty List"<<endl;
+        }else if(head == tail){
+            head = tail = NULL;
+            delete temp;
+        }else{
+            temp->next->prev = tail;
+            tail->next = temp->next;
+            head = temp->next;
+            delete temp;
+        }
+    }
+
+    void deleteFromEnd(){
+        Node *temp = new Node();
+        temp = tail;
+        if(head == NULL){
+            cout<<"Empty List"<<endl;
+        }else if(head == tail){
+            head = tail = NULL;
+            delete temp;
+        }else{
+            tail = tail->prev;
+            tail->next = head;
+            head->prev = tail;
+            delete temp;
+        }
+    }
+
+    void deleteFromPosition(int position){
+        Node *temp = new Node();
+        temp = head;
+        if(head == NULL){
+            cout<<"Empty List"<<endl;
+        }else{
+            if(position == 1){
+                deleteFromBeginning();
+            }else if(position == _size()){
+                deleteFromEnd();
+            }else{
+                int i = 1;
+                while(i<position){
+                    temp = temp->next;
+                    i++;
+                }
+                temp->prev->next = temp->next;
+                temp->next->prev = temp->prev;
+                delete temp;
+            }
+        }
+    }
+
     void printLL()
     {
         if(head == NULL)
@@ -177,6 +232,9 @@ int main()
     dcll.insertAtEnd(5);
     dcll.insertAtEnd(3);
     dcll.insertAtPosition(3,20);
+    dcll.deleteFromBeginning();
+    dcll.deleteFromEnd();
+    dcll.deleteFromPosition(3);
     cout<<"Linked list items: ";
     dcll.printLL();
     cout<<endl;
