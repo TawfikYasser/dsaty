@@ -159,6 +159,8 @@ public:
                 deleteFromBeginning();
             }else if(position == _size()){
                 deleteFromEnd();
+            }else if(position < 1 || position > _length){
+                cout<<"Invalid Position"<<endl;
             }else{
                 int i = 1;
                 while(i<position){
