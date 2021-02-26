@@ -104,10 +104,14 @@ int main()
     sll.print();
     cout<<endl;
     sll.peek();
+    cout<<endl;
+    cout<<"Stack Size = "<<sll._size();
     sll.pop();
     cout<<endl;
     sll.print();
     cout<<endl;
     sll.peek();
+    cout<<endl;
+    cout<<"Stack Size = "<<sll._size();
     return 0;
 }
