@@ -1,5 +1,5 @@
+// Tawfik Yasser
 #include <iostream>
-
 using namespace std;
 const int queue_size = 5;
 int queue[queue_size];
@@ -47,6 +47,9 @@ int main()
     enqueue(2);
     enqueue(5);
     enqueue(-1);
+    enqueue(3);
+    enqueue(9);
+    enqueue(1);
     print();
     peek();
     dequeue();
