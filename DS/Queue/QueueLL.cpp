@@ -16,8 +16,6 @@ private:
     Node *rear;
     int _length;
 public:
-
-    //Constructor to initialize a LinkedList
     QueueLL()
     {
         front = rear = NULL;
@@ -95,6 +93,11 @@ int main()
     qll.enqueue(3);
     qll.enqueue(-2);
     qll.print();
+    cout<<endl;
+    qll.peek();
+    qll.dequeue();
+    qll.print();
+    cout<<endl;
     qll.peek();
     return 0;
 }
