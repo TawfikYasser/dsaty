@@ -1,5 +1,5 @@
 # dsaty
-My repository for learning Data Structures and Algorithms
+My Repository for Learning Data Structures and Algorithms
 - Arrays => [Done] -> 6
 - Linked List => [Done] -> 21
 - Stack => [Done] -> 13
